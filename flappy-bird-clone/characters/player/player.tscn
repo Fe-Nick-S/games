@@ -64,6 +64,7 @@ hframes = 3
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "flap"
 anims/flap = SubResource( 2 )
 anims/idle = SubResource( 3 )
 
