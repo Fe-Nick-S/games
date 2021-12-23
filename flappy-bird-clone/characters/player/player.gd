@@ -2,6 +2,9 @@ extends RigidBody2D
 
 class_name Player
 
+signal hit_obstacle
+
+
 const GRAVITY_SCALE = 5.0
 const MAX_ROTATION_DEGREES = -30.0
 const FLAP_FORCE = -200
@@ -9,12 +12,12 @@ const ANGULAR_VELOCITY = -8.0
 
 
 onready var animation = $AnimationPlayer
-
 var is_game_started = false
+var is_alive = true
 
 
 func _physics_process(delta):
-	if Input.is_action_just_pressed("flap"):
+	if Input.is_action_just_pressed("flap") && is_alive:
 		if !is_game_started:
 			setup_animation()
 		flap_player()
@@ -37,3 +40,11 @@ func setup_animation():
 func flap_player():
 	linear_velocity.y = FLAP_FORCE
 	angular_velocity = ANGULAR_VELOCITY
+	
+
+func hit_obstacle():
+	if !is_alive:
+		return
+	is_alive = false
+	animation.stop()
+	emit_signal("hit_obstacle")

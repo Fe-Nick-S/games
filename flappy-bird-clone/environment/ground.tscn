@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/textures/ground.png" type="Texture" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 241, 83 )
+extents = Vector2( 373, 83 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "scroll"
@@ -37,4 +37,10 @@ shape = SubResource( 1 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "scroll"
 anims/scroll = SubResource( 2 )
+
+[node name="death_zone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="death_zone"]
+position = Vector2( 182, 85 )
+shape = SubResource( 1 )
 

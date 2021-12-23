@@ -17,7 +17,7 @@ func _physics_process(delta):
 func _on_wall_body_entered(body):
 	if body is Player:
 		# handle a case when the player hits the wall
-		pass 
+		body.hit_obstacle()
 
 
 func _on_score_area_body_exited(body):
