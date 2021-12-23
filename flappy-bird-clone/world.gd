@@ -5,11 +5,14 @@ onready var obstacle_spawner = $obstacle_spawner
 onready var ground = $ground
 onready var menu_layout = $menu
 
+const SCORE_RESILT_DUMP = "user://savedata.save"
 
 var score = 0 setget set_score
+var best_score = 0
 
 func _ready():
 	obstacle_spawner.connect("obstacle_created", self, "on_obstacle_created")
+	load_score_result()
 
 
 func start_new_game():
@@ -43,8 +46,29 @@ func game_over():
 	obstacle_spawner.stop()
 	ground.get_node("AnimationPlayer").stop()
 	get_tree().call_group("obstacles", "set_physics_process", false)
-	menu_layout.init_game_over_menu(score)
+
+	# update score
+	if score > best_score:
+		best_score = score
+		save_score_result()
+
+	menu_layout.init_game_over_menu(score, best_score)
 
 
 func _on_menu_start_game():
 	start_new_game()
+
+
+func save_score_result():
+	var score_file = File.new()
+	score_file.open(SCORE_RESILT_DUMP, File.WRITE)
+	score_file.store_var(best_score)
+	score_file.close()
+
+
+func load_score_result():
+	var score_file = File.new()
+	if score_file.file_exists(SCORE_RESILT_DUMP):
+		score_file.open(SCORE_RESILT_DUMP, File.READ)
+		best_score = score_file.get_var()
+		score_file.close()

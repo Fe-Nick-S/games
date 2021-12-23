@@ -21,8 +21,9 @@ func _input(event):
 		is_game_started = true
 
 
-func init_game_over_menu(score):
+func init_game_over_menu(score, best_score):
 	score_label.text = "SCORE: " + str(score)
+	best_score_label.text = "BEST: " + str(best_score)
 	game_over_menu.visible = true
 	
 
