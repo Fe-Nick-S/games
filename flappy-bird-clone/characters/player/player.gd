@@ -12,6 +12,9 @@ const ANGULAR_VELOCITY = -8.0
 
 
 onready var animation = $AnimationPlayer
+onready var hit = $hit
+onready var wing = $wing
+
 var is_game_started = false
 var is_alive = true
 
@@ -40,6 +43,7 @@ func setup_animation():
 func flap_player():
 	linear_velocity.y = FLAP_FORCE
 	angular_velocity = ANGULAR_VELOCITY
+	wing.play()
 	
 
 func hit_obstacle():
@@ -47,4 +51,5 @@ func hit_obstacle():
 		return
 	is_alive = false
 	animation.stop()
+	hit.play()
 	emit_signal("hit_obstacle")

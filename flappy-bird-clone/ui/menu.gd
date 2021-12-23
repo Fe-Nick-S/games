@@ -10,6 +10,7 @@ onready var score_label = $game_over_ctrl/VBoxContainer/score_label
 onready var best_score_label = $game_over_ctrl/VBoxContainer/best_score_label
 onready var game_over_menu = $game_over_ctrl
 
+
 var is_game_started = false
 
 
