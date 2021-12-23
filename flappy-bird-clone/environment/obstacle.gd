@@ -1,6 +1,6 @@
 extends Node2D
 
-signal count_score
+signal handle_obstacle
 
 const SPEED = 220
 const WALL_DISAPPEAR_POS_X = 50
@@ -22,4 +22,4 @@ func _on_wall_body_entered(body):
 
 func _on_score_area_body_exited(body):
 	if body is Player:
-		emit_signal("count_score")
+		emit_signal("handle_obstacle")

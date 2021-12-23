@@ -1,6 +1,8 @@
 extends Node2D
 
 
+signal obstacle_created(obs)
+
 onready var timer = $Timer
 var obstacleCls = preload("res://environment/obstacle.tscn")
 
@@ -17,6 +19,7 @@ func spawn_obstacle():
 	var obstacle = obstacleCls.instance()
 	add_child(obstacle)
 	obstacle.position.y = randi()%400 + 150
+	emit_signal("obstacle_created", obstacle)
 
 
 func start():
