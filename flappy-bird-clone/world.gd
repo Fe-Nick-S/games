@@ -3,9 +3,10 @@ extends Node2D
 onready var hud = $HUD
 onready var obstacle_spawner = $obstacle_spawner
 onready var ground = $ground
+onready var menu_layout = $menu
+
 
 var score = 0 setget set_score
-
 
 func _ready():
 	obstacle_spawner.connect("obstacle_created", self, "on_obstacle_created")
@@ -42,4 +43,8 @@ func game_over():
 	obstacle_spawner.stop()
 	ground.get_node("AnimationPlayer").stop()
 	get_tree().call_group("obstacles", "set_physics_process", false)
+	menu_layout.init_game_over_menu(score)
 
+
+func _on_menu_start_game():
+	start_new_game()
