@@ -10,7 +10,8 @@ func _physics_process(delta):
 	position.x += -SPEED * delta
 	if global_position.x <= -WALL_DISAPPEAR_POS_X:
 		# only for test
-		global_position.x = 500
+		#global_position.x = 500
+		queue_free()
 
 
 func _on_wall_body_entered(body):
