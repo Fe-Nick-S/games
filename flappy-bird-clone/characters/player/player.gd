@@ -1,5 +1,6 @@
 extends RigidBody2D
 
+class_name Player
 
 const GRAVITY_SCALE = 5.0
 const MAX_ROTATION_DEGREES = -30.0
